@@ -23,7 +23,7 @@ node {
     }
 
     stage('Push to Docker Registry'){
-        withCredentials([usernamePassword(credentialsId: 'e936f288-9922-493f-93ab-1cea5505c9a4', usernameVariable: '', passwordVariable: '')]) {
+        withCredentials([usernamePassword(credentialsId: 'e936f288-9922-493f-93ab-1cea5505c9a4', usernameVariable: 'dockerUser', passwordVariable: 'dockerPassword')]) {
             sh "docker login -u $dockerUser -p $dockerPassword"
             sh "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
             sh "docker push $dockerUser/$containerName:$tag"
